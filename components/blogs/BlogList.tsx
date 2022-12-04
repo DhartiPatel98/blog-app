@@ -1,14 +1,10 @@
 import React from "react";
-import { Blog as BlogType } from "../../helpers/types/Blogs";
 import BlogItem from "./BlogItem";
 
 import styles from "../../styles/blog.module.css";
+import { IBlogList } from "../../helpers/types/Blogs";
 
-interface IProps {
-  blogList: Array<BlogType>;
-}
-
-const BlogList: React.FC<IProps> = ({ blogList }) => (
+const BlogList: React.FC<IBlogList> = ({ blogList }) => (
   <div className="row">
     {(blogList || []).map((blog) => (
       <div

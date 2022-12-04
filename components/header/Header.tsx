@@ -9,7 +9,7 @@ import Logo from "../../public/images/blog-logo.png";
 import styles from "../../styles/header.module.scss";
 
 const Header: React.FC = () => (
-  <section className={styles.header}>
+  <section className={`${styles.header} mb-5`}>
     <div>
       <Link href={ROUTES.home.path}>
         <Image
