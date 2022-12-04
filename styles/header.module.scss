@@ -1,0 +1,51 @@
+.header {
+  background-color: #4d129d;
+  margin: 0 -70px;
+  padding: 20px 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: fit-content;
+  float: right;
+
+  a {
+    text-decoration: none;
+    margin-right: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    &.btn-link {
+      padding: 2px 7px;
+      font-size: 16px;
+      border-radius: 5px;
+
+      &.register {
+        background-color: white;
+        color: #4d129d;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-right: 0;
+      }
+
+      &.sign-in {
+        border: 3px solid white;
+        color: white;
+        background-color: #4d129d;
+      }
+    }
+  }
+}
+
+@media (max-width: 420) {
+  .header {
+    margin: 0 -20px;
+  }
+}
