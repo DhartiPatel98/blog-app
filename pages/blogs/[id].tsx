@@ -1,13 +1,42 @@
 import React from "react";
 
-import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { API_BASE_URL } from "../../helpers/constant";
 
-const Blog: React.FC = () => {
-  const routes = useRouter();
+import { Blog as BlogType } from "../../helpers/types/Blogs";
+import { ParsedUrlQuery } from "querystring";
 
-  console.log("*** ", routes.query.id);
+interface IBlog {
+  blog: BlogType;
+}
 
-  return <div>Blog here</div>;
+const Blog: React.FC<IBlog> = ({ blog }) => {
+  console.log("*** ", blog);
+
+  return <div>{blog.title}</div>;
+};
+
+export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps<IBlog> = async (
+  context: GetStaticPropsContext
+) => {
+  const { params } = context;
+
+  const data = await (
+    await fetch(`${API_BASE_URL}/blogs/${params?.id}`)
+  ).json();
+
+  return {
+    props: {
+      blog: data,
+    },
+  };
 };
 
 export default Blog;

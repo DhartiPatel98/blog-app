@@ -3,8 +3,8 @@ import React from "react";
 import { GetStaticProps } from "next";
 
 import Blogs from "../../components/blogs/BlogList";
-import { BLOGS as DummyBlogs } from "../dummy-blogs";
 import { IBlogList } from "../../helpers/types/Blogs";
+import { API_BASE_URL } from "../../helpers/constant";
 
 const BlogList: React.FC<IBlogList> = ({ blogList }: IBlogList) => (
   <section className="mb-5">
@@ -14,9 +14,13 @@ const BlogList: React.FC<IBlogList> = ({ blogList }: IBlogList) => (
 );
 
 export const getStaticProps: GetStaticProps<IBlogList> = async () => {
+  const response = await fetch(`${API_BASE_URL}/blogs`);
+
+  const data = await response.json();
+
   return {
     props: {
-      blogList: DummyBlogs,
+      blogList: data,
     },
   };
 };
